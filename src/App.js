@@ -7,16 +7,15 @@ import Footer from './components/Footer'
 function App() {
   return (
     <>
-      <meta name="description" content="Little Lemon Restaurant Website"/>
-      <meta name="og:title" content="Little Lemon Restaurant"/>
-      <meta name="og:description" content="Classic Italian Fare With A Modern Twist"/>
-      <meta name="og:image" content="assets/Logo.svg"/>
-      <Header />
-      <main>
+      <link href='https://fonts.googleapis.com/css?family=Karla:400,700,800' rel='stylesheet' />
+      <link href='https://fonts.googleapis.com/css?family=Markazi Text:400,700,800' rel='stylesheet'/>
+        <meta name="description" content="Little Lemon Restaurant Website"/>
+        <meta name="og:title" content="Little Lemon Restaurant"/>
+        <meta name="og:description" content="Classic Italian Fare With A Modern Twist"/>
+        <meta name="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e4/Lemon.jpg"/>
+        <Header />
         <About />
-        <Specials />
-      </main>
-      <Footer />
+        <Footer />
     </>
   );
 }

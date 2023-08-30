@@ -5,10 +5,12 @@ import { ReactComponent as LogoSvg } from '../assets/Logo.svg'
 export default class Header extends React.Component {
     render() {
         return(
-            <header>
-                <LogoSvg />
-                <Nav/>
-            </header>
+                    <header className="app-header">
+                        <div className="flex-row-center">
+                            <LogoSvg width="190" height="60" />
+                            <Nav isFooter="false"/>
+                        </div>
+                    </header>
         )
     }
 }

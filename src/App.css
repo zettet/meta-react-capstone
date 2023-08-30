@@ -2,36 +2,114 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex-row{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.flex-row-center{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.flex-container{
-  display: flex;
+.flex-column{
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: left;
+  margin-right: 200px;
+  margin-top: 20px;
 }
 
 .navLink{
-  padding-left: 10px;
+  padding-left: 33px;
 }
+
+.app-header{
+  margin-bottom: 10px;
+}
+
+.app-about-us{
+  height: 350px;
+  width: 100%;
+  background-color: #495E57;
+}
+
+.app-button{
+  margin-left: 70px;
+  margin-top: 5px;
+  width: 210px;
+  height: 45px;
+  background-color: #F4CE14;
+  border-radius: 16px;
+  font-family: 'Karla';
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+}
+
+.section-title{
+  font-family: 'Karla';
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.display-title{
+  padding-left: 70px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+  font-family: 'Markazi Text';
+  font-size:  64px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #F4CE14;
+}
+
+.subtitle{
+  padding-left: 70px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+  font-family: 'Markazi Text';
+  font-size:  40px;
+  line-height: 20px;
+  font-weight: 300;
+  color: white;
+}
+
+.lead-text{
+  padding-left: 70px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+  font-family: 'Markazi Text';
+  font-size:  18px;
+  line-height: 1px;
+  color: white;
+}
+
+.hero-image{
+  border-radius: 16px;
+}
+
+a:link{
+  text-decoration: none;
+  color: #333333;
+}
+
+a:visited{
+  text-decoration: none;
+  color: #333333;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #EE9972;
+}
+

@@ -6,7 +6,7 @@ export default class Footer extends React.Component {
     render() {
         return(
             <footer>
-                <div className="flex-container">
+                <div className="flex-row">
                     <LogoSvg />
                     <Nav isFooter="true" />
                 </div>

@@ -15,6 +15,7 @@ function App() {
         <meta name="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e4/Lemon.jpg"/>
         <Header />
         <About />
+        <Specials />
         <Footer />
     </>
   );

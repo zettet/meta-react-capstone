@@ -7,7 +7,7 @@ import MenuItem from '../home/MenuItem'
 export default class Specials extends React.Component {
     render() {
         return (
-            <section class="app-specials" name="Weekly Specials">
+            <section class="app-specials" id="specials" name="Weekly Specials">
                 <div class="flex-row">
                     <div className="menu-header">
                         <span class="display-title-black">This Week's Specials!</span> <button className='app-button'>Online Menu</button> <br />

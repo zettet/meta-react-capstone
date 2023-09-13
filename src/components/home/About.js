@@ -1,5 +1,5 @@
 import React from "react"
-import restaurantFoodImg from '../assets/restaurantFood.jpg'
+import restaurantFoodImg from '../../assets/restaurantFood.jpg'
 
 export default class About extends React.Component {
     render() {

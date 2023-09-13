@@ -1,7 +1,8 @@
 import React from "react"
-import greekSaladImg from '../assets/greekSalad.jpg'
-import bruschettaImg from '../assets/bruschetta.jpg'
-import lemonDessertImg from '../assets/lemonDessert.jpg'
+import greekSaladImg from '../../assets/greekSalad.jpg'
+import bruschettaImg from '../../assets/bruschetta.jpg'
+import lemonDessertImg from '../../assets/lemonDessert.jpg'
+import MenuItem from '../home/MenuItem'
 
 export default class Specials extends React.Component {
     render() {
@@ -13,14 +14,7 @@ export default class Specials extends React.Component {
                     </div>
                 </div>
                 <div class="flex-row">
-                    <div className="menu-item">
-                        <img src={greekSaladImg} alt="Greek Salad" width="300" height="160" className="menu-image"/>
-                        <div className="menu-desc">
-                            <span class="paragraph-bold">Greek Salad</span><span class="text-price">$12.99</span><br />
-                            <span class="paragraph">The famous greek salad of crispy lettuce, peppers, olives, and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.</span><br /><br /><br />
-                            <span class="paragraph-bold">Order a Delivery</span>
-                        </div>
-                    </div>
+                    <MenuItem imgSrc={greekSaladImg} imgAlt="Greek Salad" itemName="Greek Salad" itemPrice="$12.99" itemDesc="The famous greek salad of crispy lettuce, peppers, olives, and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons."/>
                     <div className="menu-item">
                         <img src={bruschettaImg} alt="Bruschetta" width="300" height="160" className="menu-image"/>
                         <div className="menu-desc">

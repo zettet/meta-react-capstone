@@ -24,7 +24,9 @@ export default class About extends React.Component {
                             <span className="lead-text">
                                 twist.
                             </span><br />
-                            <button className='app-button'>Reserve a table</button>
+                            <a href="/bookings">
+                                <button className='app-button'>Reserve a table</button>
+                            </a>
                         </div>
                         <div className="flex-column">
                             <img src={restaurantFoodImg} alt="Restaurant Food" width="420" height="415" className="hero-image"/>

@@ -12,7 +12,7 @@ export default class Booking extends React.Component {
       <meta name="og:description" content="Book a reservation at little lemon!"/>
       <meta name="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e4/Lemon.jpg"/>
       <Header />
-      <BookingForm />
+      <BookingForm availableTimes={this.props.availableTimes} dispatchAvailableTimes={this.props.dispatchAvailableTimes}/>
       <Footer />
     </>
     );

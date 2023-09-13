@@ -4,9 +4,9 @@ import restaurantFoodImg from '../../assets/restaurantFood.jpg'
 export default class About extends React.Component {
     render() {
         return (
-                <section name="About" className="app-about-us">
-                    <div class="flex-row">
-                        <div class="flex-column">
+                <section name="About" id="about" className="app-about-us">
+                    <div className="flex-row">
+                        <div className="flex-column">
                             <span className="display-title">Little Lemon</span><br />
                             <span className="subtitle">Chicago</span><br />
                             <span className="lead-text">

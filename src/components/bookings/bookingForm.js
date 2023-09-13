@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-export default function BookingForm() {
+export default function BookingForm(props) {
     const [reservationRequest, setReservationRequest] = useState({
         date: null,
         time: null,
@@ -24,7 +24,7 @@ export default function BookingForm() {
 
         //TODO: would be really helpful to validate that the date + time is set in the future.
 
-        if(reservationRequest.numberOfGuests === null || reservationRequest.numberOfGuests == 0) {
+        if(reservationRequest.numberOfGuests === null || reservationRequest.numberOfGuests === 0) {
             validationErrors.push("Number of Guests must be set.");
         }
 
@@ -52,6 +52,10 @@ export default function BookingForm() {
             newReservationRequest.occaision = value;
         }
         setReservationRequest(newReservationRequest);
+        props.dispatchAvailableTimes({
+            type: 'UpdateDate',
+            value: newReservationRequest.date
+        })
     }
 
     var errorMessage = <></>
@@ -64,6 +68,11 @@ export default function BookingForm() {
         </ul>
     }
 
+    var timeOptions =  [<option key="-1">Select</option>]
+    for(var i = 0; i < props.availableTimes.length; i++) {
+        timeOptions.push(<option key={i}>{props.availableTimes[i]}</option>)
+    }
+
     return (
         <>
             <form style={{display: "grid", maxWidth: "200px", gap: "20px"}} onSubmit={handleSubmit}>
@@ -71,13 +80,7 @@ export default function BookingForm() {
                 <input type="date" id="res-date" name="res-date" onChange={handleChange}/>
                 <label for="res-time">Choose time</label>
                 <select id="res-time" name="res-time" onChange={handleChange}>
-                    <option>Select</option>
-                    <option>17:00</option>
-                    <option>18:00</option>
-                    <option>19:00</option>
-                    <option>20:00</option>
-                    <option>21:00</option>
-                    <option>22:00</option>
+                    {timeOptions}
                 </select>
                 <label for="guests">Number of guests</label>
                 <input type="number" placeholder="0" min="0" max="10" id="guests" name="guests" onChange={handleChange}/>

@@ -25,7 +25,7 @@ export default class About extends React.Component {
                                 twist.
                             </span><br />
                             <a href="/bookings">
-                                <button className='app-button'>Reserve a table</button>
+                                <button aria-label="On Click" className='app-button'>Reserve a table</button>
                             </a>
                         </div>
                         <div className="flex-column">

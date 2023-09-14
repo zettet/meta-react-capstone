@@ -1,6 +1,7 @@
 import './App.css';
-import Home from './components/Home';
-import Booking from './components/Booking';
+import Home from './pages/Home';
+import Booking from './pages/Booking';
+import BookingConfirmation from './pages/BookingConfirmation';
 import { initializeTimes, updateTimes } from './components/reducers/availableTimesReducer';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useEffect, useReducer } from "react"
@@ -16,6 +17,7 @@ function App() {
         <Routes> 
           <Route path="/" element={<Home/>}></Route>
           <Route path="/bookings" element={<Booking availableTimes={availableTimesState.availableTimes} dispatchAvailableTimes={dispatchAvailableTimes}/>}></Route>
+          <Route path="/booking-confirmation" element={<BookingConfirmation />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,7 +1,7 @@
 import React from "react"
-import BookingForm from "./bookings/bookingForm"
-import Header from "./common/Header";
-import Footer from "./common/Footer";
+import BookingForm from "../components/bookings/bookingForm"
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
 
 export default class Booking extends React.Component {
   render() {

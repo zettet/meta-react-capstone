@@ -1,8 +1,8 @@
 import '../App.css';
-import Header from './common/Header'
-import Footer from './common/Footer'
-import About from './home/About'
-import Specials from './home/Specials'
+import Header from '../components/common/Header'
+import Footer from '../components/common/Footer'
+import About from '../components/home/About'
+import Specials from '../components/home/Specials'
 import React from "react"
 
 

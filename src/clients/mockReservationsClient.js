@@ -29,11 +29,13 @@ export default class MockReservationClient {
     }
 
     submitAPI(formData) {
-        const random = this.seededRandom(Date.now)
-        if(random() < 0.9) {
+        const random = this.seededRandom(Date.now())
+        const randNum = random()
+        console.log(randNum)
+        if(randNum < 0.5) {
             return true
         } else {
-            throw new Error();
+            return false
         }
     }
 }

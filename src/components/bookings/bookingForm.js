@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import MockReservationClient from "../../clients/mockReservationsClient";
-import { useNavigate } from 'react-router-dom';
 
 export default function BookingForm(props) {
     const [reservationRequest, setReservationRequest] = useState({
@@ -16,8 +16,11 @@ export default function BookingForm(props) {
         submitSuccessfull: false,
         submitRequestMade: false // would be better to use a status enum here if this was a real application
     })
-    const navigate = useNavigate()
 
+    var navigate = useNavigate()
+    if(props.mockNavigateHook != null) {
+        navigate = props.mockNavigateHook
+    }
     const handleSubmit = (event) => {
         event.preventDefault();
         var validationErrors = []
@@ -27,17 +30,16 @@ export default function BookingForm(props) {
         }
 
         if(reservationRequest.time === null || reservationRequest.time === "Select" ) {
-            validationErrors.push("Reservation Time must be set.");
+            validationErrors.push("Reservation time must be set.");
         }
 
         const dateStr = reservationRequest.date + " " + reservationRequest.time
         if(Date.parse(dateStr) < Date.now()) {
-            console.log("invalid date")
             validationErrors.push("Reservation time must be in the future.")
         }
 
         if(reservationRequest.numberOfGuests === null || reservationRequest.numberOfGuests === 0) {
-            validationErrors.push("Number of Guests must be set.");
+            validationErrors.push("Number of guests must be set.");
         }
 
         if(reservationRequest.occaision === null ||
@@ -49,22 +51,19 @@ export default function BookingForm(props) {
         if(validationErrors.length === 0) {
             const mockReservationsClient = new MockReservationClient()
             const response = mockReservationsClient.submitAPI(reservationRequest)
-            console.log("booking response: " + response)
             if(response === false) {
                 bookingErrors.push("Something went wrong, please try again...")
                 setSubmitErrors({validationErrors: validationErrors, bookingErrors: bookingErrors, submitSuccessfull: false, submitRequestMade: true})
             } else {
-                console.log("booking success")
                 setSubmitErrors({validationErrors: validationErrors, bookingErrors: bookingErrors, submitSuccessfull: true, submitRequestMade: true})
             }
         } else {
             setSubmitErrors({validationErrors: validationErrors, bookingErrors: bookingErrors, submitSuccessfull: false, submitRequestMade: false})
         }
-    }
+      }
 
     const handleChange = (event) => {
         const {name, value} = event.target;
-
         var newReservationRequest = {...reservationRequest}
         if(name === "res-date") {
             newReservationRequest.date = value;
@@ -90,8 +89,9 @@ export default function BookingForm(props) {
 
     var errorMessage = <></>
     if (submitErrors.validationErrors.length > 0) {
+        var index = 0
         const errorItems = submitErrors.validationErrors.map(function(error){
-            return(<li style={{color: "red"}}>{error}</li>)
+            return(<li key={++index}style={{color: "red"}}>{error}</li>)
         })
         errorMessage = <ul>
             {errorItems}

@@ -93,7 +93,6 @@ export default function BookingForm(props) {
     }
 
     const bookingErrorMessage = (submitErrors.bookingErrors.length >= 0) ? <span style={{color: "red"}}>We're sorry, something went wrong. Please try again.</span> : <span></span>
-    console.log(bookingErrorMessage)
 
     var timeOptions =  [<option key="-1">Select</option>]
     if(props != null && props.availableTimes != null) {

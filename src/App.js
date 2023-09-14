@@ -1,13 +1,13 @@
 import './App.css';
-import Home from './components/Home';
-import Booking from './components/Booking';
-import {initializeTimes, updateTimes} from './components/reducers/availableTimesReducer';
+import Home from './pages/Home';
+import Booking from './pages/Booking';
+import BookingConfirmation from './pages/BookingConfirmation';
+import { initializeTimes, updateTimes } from './components/reducers/availableTimesReducer';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import {useReducer} from "react"
+import { useEffect, useReducer } from "react"
 
 function App() {
-
-  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, initializeTimes())
+  const [availableTimesState, dispatchAvailableTimes] = useReducer(updateTimes, initializeTimes())
 
   return (
     <>
@@ -16,7 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes> 
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/bookings" element={<Booking availableTimes={availableTimes} dispatchAvailableTimes={dispatchAvailableTimes}/>}></Route>
+          <Route path="/bookings" element={<Booking availableTimes={availableTimesState.availableTimes} dispatchAvailableTimes={dispatchAvailableTimes}/>}></Route>
+          <Route path="/booking-confirmation" element={<BookingConfirmation />} />
         </Routes>
       </BrowserRouter>
     </>

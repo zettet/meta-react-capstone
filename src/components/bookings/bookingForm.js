@@ -1,4 +1,6 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import MockReservationClient from "../../clients/mockReservationsClient";
+import {Redirect, useNavigate} from 'react-router-dom';
 
 export default function BookingForm(props) {
     const [reservationRequest, setReservationRequest] = useState({
@@ -9,11 +11,17 @@ export default function BookingForm(props) {
     });
 
     const [submitErrors, setSubmitErrors] = useState({
-        errors: []
+        validationErrors: [],
+        bookingErrors: [],
+        submitSuccessfull: false
     })
+    const navigate = useNavigate()
 
     const handleSubmit = (event) => {
+        event.preventDefault();
+
         var validationErrors = []
+        var bookingErrors = []
         if(reservationRequest.date === null) {
             validationErrors.push("Reservation date must be set.");
         }
@@ -23,7 +31,6 @@ export default function BookingForm(props) {
         }
 
         //TODO: would be really helpful to validate that the date + time is set in the future.
-
         if(reservationRequest.numberOfGuests === null || reservationRequest.numberOfGuests === 0) {
             validationErrors.push("Number of Guests must be set.");
         }
@@ -34,8 +41,20 @@ export default function BookingForm(props) {
             validationErrors.push("Occaision must be set.")
         }
 
-        setSubmitErrors({errors: validationErrors})
-        event.preventDefault();
+        if(validationErrors.length === 0) {
+            const mockReservationsClient = new MockReservationClient()
+            const response = mockReservationsClient.submitAPI(reservationRequest)
+            console.log("booking response: " + response)
+            if(response === false) {
+                bookingErrors.push("Something went wrong, please try again...")
+                setSubmitErrors({validationErrors: validationErrors, bookingErrors: bookingErrors, submitSuccessfull: false})
+            } else {
+                console.log("booking success")
+                setSubmitErrors({validationErrors: validationErrors, bookingErrors: bookingErrors, submitSuccessfull: true})
+            }
+        } else {
+            setSubmitErrors({validationErrors: validationErrors, bookingErrors: bookingErrors, submitSuccessfull: false})
+        }
     }
 
     const handleChange = (event) => {
@@ -52,15 +71,20 @@ export default function BookingForm(props) {
             newReservationRequest.occaision = value;
         }
         setReservationRequest(newReservationRequest);
-        props.dispatchAvailableTimes({
-            type: 'UpdateDate',
-            value: newReservationRequest.date
-        })
     }
 
+    useEffect(() => {
+        if(props.dispatchAvailableTimes != null) {
+            props.dispatchAvailableTimes({
+                type: 'UpdateDate',
+                value: new Date(reservationRequest.date).valueOf()
+            })
+        }
+    }, [reservationRequest.date])
+
     var errorMessage = <></>
-    if (submitErrors.errors.length > 0) {
-        const errorItems = submitErrors.errors.map(function(error){
+    if (submitErrors.validationErrors.length > 0) {
+        const errorItems = submitErrors.validationErrors.map(function(error){
             return(<li style={{color: "red"}}>{error}</li>)
         })
         errorMessage = <ul>
@@ -68,11 +92,17 @@ export default function BookingForm(props) {
         </ul>
     }
 
+    const bookingErrorMessage = (submitErrors.bookingErrors.length >= 0) ? <span style={{color: "red"}}>We're sorry, something went wrong. Please try again.</span> : <span></span>
+
     var timeOptions =  [<option key="-1">Select</option>]
     if(props != null && props.availableTimes != null) {
         for(var i = 0; i < props.availableTimes.length; i++) {
             timeOptions.push(<option key={i}>{props.availableTimes[i]}</option>)
         }
+    }
+
+    if(submitErrors.bookingErrors.length === 0 && submitErrors.submitSuccessfull === true) {
+        navigate("/booking-confirmation")
     }
 
     return (
@@ -95,6 +125,7 @@ export default function BookingForm(props) {
                 </select>
                 <button type="Submit">Book Now</button>
             </form>
+            {bookingErrorMessage}
             {errorMessage}
         </>
     );

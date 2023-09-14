@@ -130,7 +130,7 @@ export default function BookingForm(props) {
                     <option>Birthday</option>
                     <option>Anniversary</option>
                 </select>
-                <button type="Submit">Book Now</button>
+                <button className='app-button' aria-label="On Click" type="Submit">Book Now</button>
             </form>
             {bookingErrorMessage}
             {errorMessage}

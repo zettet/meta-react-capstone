@@ -10,7 +10,7 @@ export default class Specials extends React.Component {
             <section className="app-specials" id="specials" name="Weekly Specials">
                 <div className="flex-row">
                     <div className="menu-header">
-                        <span className="display-title-black">This Week's Specials!</span> <button className='app-button'>Online Menu</button> <br />
+                        <span className="display-title-black">This Week's Specials!</span> <button aria-label="On Click" className='app-button'>Online Menu</button> <br />
                     </div>
                 </div>
                 <div className="flex-row">

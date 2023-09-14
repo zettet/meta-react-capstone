@@ -7,10 +7,6 @@ export default class Booking extends React.Component {
   render() {
     return (
     <>
-      <meta name="description" content="Little Lemon Restaurant Website Reservation Booking"/>
-      <meta name="og:title" content="Little Lemon Restaurant Reservations"/>
-      <meta name="og:description" content="Book a reservation at little lemon!"/>
-      <meta name="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e4/Lemon.jpg"/>
       <Header />
       <BookingForm availableTimes={this.props.availableTimes} dispatchAvailableTimes={this.props.dispatchAvailableTimes}/>
       <Footer />

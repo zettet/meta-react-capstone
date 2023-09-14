@@ -69,29 +69,31 @@ export default function BookingForm(props) {
     }
 
     var timeOptions =  [<option key="-1">Select</option>]
-    for(var i = 0; i < props.availableTimes.length; i++) {
-        timeOptions.push(<option key={i}>{props.availableTimes[i]}</option>)
+    if(props != null && props.availableTimes != null) {
+        for(var i = 0; i < props.availableTimes.length; i++) {
+            timeOptions.push(<option key={i}>{props.availableTimes[i]}</option>)
+        }
     }
 
     return (
         <>
             <form style={{display: "grid", maxWidth: "200px", gap: "20px"}} onSubmit={handleSubmit}>
-                <label for="res-date">Choose date</label>
+                <label htmlFor="res-date">Choose date</label>
                 <input type="date" id="res-date" name="res-date" onChange={handleChange}/>
-                <label for="res-time">Choose time</label>
+                <label htmlFor="res-time">Choose time</label>
                 <select id="res-time" name="res-time" onChange={handleChange}>
                     {timeOptions}
                 </select>
-                <label for="guests">Number of guests</label>
+                <label htmlFor="guests">Number of guests</label>
                 <input type="number" placeholder="0" min="0" max="10" id="guests" name="guests" onChange={handleChange}/>
-                <label for="occasion">Occasion</label>
+                <label htmlFor="occasion">Occasion</label>
                 <select id="occasion" name="occaision" onChange={handleChange}>
                     <option>Select</option>
                     <option>None</option>
                     <option>Birthday</option>
                     <option>Anniversary</option>
                 </select>
-                <button type="Submit">Submit</button>
+                <button type="Submit">Book Now</button>
             </form>
             {errorMessage}
         </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 export default function BookingForm(props) {
     const [reservationRequest, setReservationRequest] = useState({
@@ -23,7 +23,6 @@ export default function BookingForm(props) {
         }
 
         //TODO: would be really helpful to validate that the date + time is set in the future.
-
         if(reservationRequest.numberOfGuests === null || reservationRequest.numberOfGuests === 0) {
             validationErrors.push("Number of Guests must be set.");
         }
@@ -52,11 +51,16 @@ export default function BookingForm(props) {
             newReservationRequest.occaision = value;
         }
         setReservationRequest(newReservationRequest);
-        props.dispatchAvailableTimes({
-            type: 'UpdateDate',
-            value: newReservationRequest.date
-        })
     }
+
+    useEffect(() => {
+        if(props.dispatchAvailableTimes != null) {
+            props.dispatchAvailableTimes({
+                type: 'UpdateDate',
+                value: new Date(reservationRequest.date).valueOf()
+            })
+        }
+    }, [reservationRequest.date])
 
     var errorMessage = <></>
     if (submitErrors.errors.length > 0) {

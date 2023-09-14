@@ -4,7 +4,7 @@ import Booking from './pages/Booking';
 import BookingConfirmation from './pages/BookingConfirmation';
 import { initializeTimes, updateTimes } from './components/reducers/availableTimesReducer';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { useEffect, useReducer } from "react"
+import { useReducer } from "react"
 
 function App() {
   const [availableTimesState, dispatchAvailableTimes] = useReducer(updateTimes, initializeTimes())
